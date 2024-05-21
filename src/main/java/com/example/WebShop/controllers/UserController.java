@@ -1,5 +1,6 @@
 package com.example.WebShop.controllers;
 
+import com.example.WebShop.models.Library;
 import com.example.WebShop.models.User;
 import com.example.WebShop.repositories.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,8 @@ public class UserController {
             return ResponseEntity.badRequest().body("Username already exists");
         }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+        Library library = new Library();
+        user.setLibrary(library);
         usersRepository.save(user);
         return ResponseEntity.ok("User Created");
     }

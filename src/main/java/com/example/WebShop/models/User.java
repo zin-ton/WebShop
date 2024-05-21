@@ -1,10 +1,7 @@
 package com.example.WebShop.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -15,6 +12,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     @Id
+    @Column(name = "id")
     private Long id;
 
     @Size(min = 5, message = "Login Must contain at least 5 symbols")
@@ -37,13 +35,26 @@ public class User {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
-    public User(Long id, String login, String name, String lastName, String email, String password) {
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "library_id", referencedColumnName = "id")
+    private Library library;
+
+    public User(Long id, String login, String name, String lastName, String email, String password, Library library) {
         this.id = id;
         this.login = login;
         this.name = name;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
+        this.library = library;
+    }
+
+    public Library getLibrary() {
+        return library;
+    }
+
+    public void setLibrary(Library library) {
+        this.library = library;
     }
 
     public User() {

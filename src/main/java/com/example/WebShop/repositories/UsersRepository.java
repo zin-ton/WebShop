@@ -9,7 +9,9 @@ import java.util.List;
 import java.util.Optional;
 
 public interface UsersRepository extends JpaRepository<User, Long> {
+
     Optional<User> findByLogin(String username);
     @Query("SELECT u FROM users u WHERE u.login like ?1")
     List<User> findByLoginBeginWith(String login);
+    Optional<User> findById(Long id);
 }
