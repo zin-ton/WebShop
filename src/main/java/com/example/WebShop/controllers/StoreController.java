@@ -18,9 +18,13 @@ public class StoreController {
     private ProductRepository productRepository;
     @Autowired
     private UsersRepository usersRepository;
+    @Autowired VerificationController verificationController;
 
     @PostMapping("/createProduct")
     private ResponseEntity<Object> createProduct(@RequestBody Product product){
+        if(!verificationController.verifyProduct()){
+            return ResponseEntity.badRequest().body("Product not verified");
+        }
         productRepository.save(product);
         return ResponseEntity.ok("product Added");
     }
@@ -36,11 +40,6 @@ public class StoreController {
         return ResponseEntity.ok("added");
     }
 
-    @GetMapping("/getLibrary")
-    private ResponseEntity<Object> getLibrary(@RequestParam String userId){
-        User user = usersRepository.findById(Long.valueOf(userId)).orElseThrow(() -> new RuntimeException("User not Found"));
-        return ResponseEntity.ok(user.getProducts());
-    }
 
     @GetMapping("/getProducts")
     private ResponseEntity<Object> getProducts(){
@@ -57,6 +56,11 @@ public class StoreController {
     private ResponseEntity<Object> library(@RequestParam String userId){
         User user = usersRepository.findById(Long.valueOf(userId)).orElseThrow(() -> new RuntimeException("User not Found"));
         return ResponseEntity.ok(user.getProducts());
+    }
+
+    @GetMapping("/getProduct")
+    private ResponseEntity<Object> getProduct(@RequestParam String productId){
+        return ResponseEntity.ok(productRepository.getById(Long.valueOf(productId)));
     }
 
 
