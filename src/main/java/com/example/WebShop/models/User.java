@@ -6,6 +6,8 @@ import jakarta.persistence.*;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import javax.validation.constraints.Email;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity(name = "users")
 public class User {
@@ -34,28 +36,36 @@ public class User {
     @Pattern(regexp = "^(?=.*[a-zA-Z])(?=.*[0-9]).*$", message = "The password should contain at least one letter and one digit.")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
+    @ElementCollection
+    private List<Long> products;
+    @ElementCollection
+    private List<Long> orders;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "library_id", referencedColumnName = "id")
-    private Library library;
+    public void setProducts(List<Long> products) {
+        this.products = products;
+    }
 
-    public User(Long id, String login, String name, String lastName, String email, String password, Library library) {
+    public List<Long> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Long> orders) {
+        this.orders = orders;
+    }
+
+    public User(Long id, String login, String name, String lastName, String email, String password) {
         this.id = id;
         this.login = login;
         this.name = name;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
-        this.library = library;
     }
 
-    public Library getLibrary() {
-        return library;
+    public List<Long> getProducts() {
+        return products;
     }
 
-    public void setLibrary(Library library) {
-        this.library = library;
-    }
 
     public User() {
     }

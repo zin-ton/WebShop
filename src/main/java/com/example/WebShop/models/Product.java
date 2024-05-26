@@ -10,19 +10,14 @@ public class Product {
     private String name;
     private String description;
 
-    @ManyToOne
-    @JoinColumn(name = "library_id", nullable = true)
-    private Library library;
-
 
     public Product() {
     }
 
-    public Product(Long id, String name, String description, Library library) {
+    public Product(Long id, String name, String description) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.library = library;
     }
 
     public Long getId() {
@@ -49,11 +44,4 @@ public class Product {
         this.description = description;
     }
 
-    public Library getLibrary() {
-        return library;
-    }
-
-    public void setLibrary(Library library) {
-        this.library = library;
-    }
 }
