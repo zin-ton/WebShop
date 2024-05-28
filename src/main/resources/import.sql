@@ -1,0 +1,7 @@
+insert into users(login, name, last_name, email, password) values ('user', 'user', 'user', 'user@gmail.com', '$2a$10$1I/gmV9sxdTORfZeFjOhPOXphO5BqEjkP503mdpqHUzkMrh5guH9.')
+insert into products(name, description) values ('minecraft', 'the best game in the world made for degradation')
+insert into products(name, description) values ('the witcher 3', 'the best game in the world made for smart people')
+insert into products(name, description) values ('project zomboid', 'survival game in zombie apocalypse')
+insert into products(name, description) values ('deus ex: human revolution', 'stealth game with detective elements')
+insert into products(name, description) values ('red dead redemption 2', 'open world game wild west')
+insert into products(name, description) values ('league of legends', 'mmo')

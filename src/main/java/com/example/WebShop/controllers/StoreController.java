@@ -7,11 +7,9 @@ import com.example.WebShop.repositories.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
 @Controller
 public class StoreController {
     @Autowired
@@ -60,7 +58,7 @@ public class StoreController {
 
     @GetMapping("/getProduct")
     private ResponseEntity<Object> getProduct(@RequestParam String productId){
-        return ResponseEntity.ok(productRepository.getById(Long.valueOf(productId)));
+        return ResponseEntity.ok(productRepository.findById(Long.valueOf(productId)));
     }
 
 
