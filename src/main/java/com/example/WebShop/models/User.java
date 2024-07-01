@@ -27,6 +27,7 @@ public class User {
 
     @Size(min = 2, message = "The last name should have at least 2 characters.")
     @Pattern(regexp = "^[a-zA-Z]+$", message = "The last name should contain only letters.")
+    @Column(name = "LASTNAME")
     private String lastName;
 
     @Email(message = "Invalid email address format.")
@@ -40,6 +41,16 @@ public class User {
     private List<Long> products;
     @ElementCollection
     private List<Long> orders;
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
 
     public void setProducts(List<Long> products) {
         this.products = products;

@@ -1,0 +1,2 @@
+insert into users (id, name, email, lastname, login, password, role) values (1, 'John', '123@gmail.com', 'Doe', 'john', '$2a$10$TBM7Tld.ikS3/I5evqceWOOiYD0KxpswtIBrOOnEdxYUKBr37WqKG', 'USER');
+insert into users (id, name, email, lastname, login, password, role) values (2, 'Anton', '1234@gmail.com', 'Petriov' , 'zinton', '$2a$10$TBM7Tld.ikS3/I5evqceWOOiYD0KxpswtIBrOOnEdxYUKBr37WqKG', 'ADMIN');
